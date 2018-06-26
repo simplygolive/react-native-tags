@@ -67,6 +67,20 @@ class Tags extends React.Component {
     }
   };
 
+  onBlur = event => {
+    const text = event.nativeEvent.text;
+      if (text.length > 1) {
+        this.setState(
+            {
+              tags: [...this.state.tags, text.trim()],
+              text: ' '
+            },
+            () =>
+              this.props.onChangeTags && this.props.onChangeTags(this.state.tags)
+        );
+    }
+  };
+
   render() {
     return (
       <View
@@ -87,6 +101,7 @@ class Tags extends React.Component {
               value={this.state.text}
               style={[styles.textInput, this.props.inputStyle]}
               onChangeText={this.onChangeText}
+              onBlur={this.onBlur}
               underlineColorAndroid="transparent"
             />
           </View>
