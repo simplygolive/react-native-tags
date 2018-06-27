@@ -67,17 +67,17 @@ class Tags extends React.Component {
     }
   };
 
-  onBlur = event => {
+  onEndEditing = (event) => {
     const text = event.nativeEvent.text;
-      if (text.length > 1) {
-        this.setState(
-            {
-              tags: [...this.state.tags, text.trim()],
-              text: ' '
-            },
-            () =>
-              this.props.onChangeTags && this.props.onChangeTags(this.state.tags)
-        );
+    if (text && text.length > 1) {
+      this.setState(
+        {
+          tags: [...this.state.tags, text.trim()],
+            text: ' '
+        },
+        () =>
+          this.props.onChangeTags && this.props.onChangeTags(this.state.tags)
+      );
     }
   };
 
@@ -101,7 +101,7 @@ class Tags extends React.Component {
               value={this.state.text}
               style={[styles.textInput, this.props.inputStyle]}
               onChangeText={this.onChangeText}
-              onBlur={this.onBlur}
+              onEndEditing={this.onEndEditing}
               underlineColorAndroid="transparent"
             />
           </View>
