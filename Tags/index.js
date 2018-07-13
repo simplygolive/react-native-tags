@@ -102,6 +102,7 @@ class Tags extends React.Component {
               style={[styles.textInput, this.props.inputStyle]}
               onChangeText={this.onChangeText}
               onEndEditing={this.onEndEditing}
+              placeholder={this.state.tags.length === 0 ? "Enter tags" : null}
               underlineColorAndroid="transparent"
             />
           </View>
